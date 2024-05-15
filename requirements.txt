@@ -1,0 +1,12 @@
+langchain_openai==0.1.6
+langchain_core==0.1.52
+python-dotenv==1.0.1
+streamlit
+langserve
+fastapi
+uvicorn
+bs4
+pypdf
+langchain_community
+langchain
+neo4j
