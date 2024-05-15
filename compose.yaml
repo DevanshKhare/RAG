@@ -1,0 +1,27 @@
+services:
+  app:
+    image: python:3
+    container_name: "ai-sensing"
+    command: bash -c "pip install -r requirements.txt && streamlit run main.py"
+    ports:
+      - 127.0.0.1:8501:8501
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      NEO4J_URL: ${NEO4J_URL}
+      NEO4J_USERNAME: ${NEO4J_USERNAME}
+      NEO4J_PASSWORD: ${NEO4J_PASSWORD}
+  neo4j:
+    image: neo4j:latest
+    container_name: "neo4j"
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
+      - NEO4J_apoc_export_file_enabled=true
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_apoc_import_file_use__neo4j__config=true
+      - NEO4J_PLUGINS=["apoc", "graph-data-science"]
