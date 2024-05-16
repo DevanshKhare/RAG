@@ -10,7 +10,7 @@ import streamlit as st
 load_dotenv()
 
 try:
-    st.title("AI")
+    st.title("AI Generator")
     input_text = st.text_input("Search the topic you want")
 
 
